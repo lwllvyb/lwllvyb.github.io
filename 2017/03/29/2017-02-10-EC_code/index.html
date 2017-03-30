@@ -97,7 +97,7 @@ EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数
 <meta property="og:description" content="Erasure Code基本原理纠删码（EC）是最近段时间啊存储领域比较流行的数据冗余存储方法，类似传统的RAID，但是比RADI方式更灵活
 详细过程它将写入的数据分成N份原始数据，通过这个N份原始数据计算出M份校验数据。把N+M份数据分别保存在不同的设备或者节点中，并通过N+M份中的任意N份数据块还原出所有数据块
 EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N">
-<meta property="og:updated_time" content="2017-03-30T09:08:31.129Z">
+<meta property="og:updated_time" content="2017-03-30T09:09:11.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EC code">
 <meta name="twitter:description" content="Erasure Code基本原理纠删码（EC）是最近段时间啊存储领域比较流行的数据冗余存储方法，类似传统的RAID，但是比RADI方式更灵活
@@ -337,8 +337,7 @@ EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数
 </ul>
 <h3 id="LRC-编码"><a href="#LRC-编码" class="headerlink" title="LRC 编码"></a>LRC 编码</h3><ul>
 <li>LRC 编码的核心思想：将校验块分为全局校验块（global parity）和局部校验块（local reconstruction parity），从而减少网络开销。</li>
-<li><p>LRC (M, G, L) 的三个参数分别为</p>
-<ul>
+<li>LRC (M, G, L) 的三个参数分别为<ul>
 <li>M 是原始数据块的数量</li>
 <li>G 是全局数据块的数量</li>
 <li>L 为局部校验块的数量</li>
