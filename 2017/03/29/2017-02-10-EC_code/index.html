@@ -88,21 +88,27 @@
 
 
 <meta name="description" content="基本原理纠删码（EC）是最近段时间啊存储领域比较流行的数据冗余存储方法，类似传统的RAID，但是比RADI方式更灵活
+
 他将写入的数据分成N份原始数据，通过这个N份原始数据计算出M份校验数据。把N+M份数据分别保存在不同的设备或者节点中，并通过N+M份中的任意N份数据块还原出所有数据块
-EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来还原">
+
+EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EC code">
 <meta property="og:url" content="http://liyanyi.com/2017/03/29/2017-02-10-EC_code/index.html">
 <meta property="og:site_name" content="Li Wenlong">
 <meta property="og:description" content="基本原理纠删码（EC）是最近段时间啊存储领域比较流行的数据冗余存储方法，类似传统的RAID，但是比RADI方式更灵活
+
 他将写入的数据分成N份原始数据，通过这个N份原始数据计算出M份校验数据。把N+M份数据分别保存在不同的设备或者节点中，并通过N+M份中的任意N份数据块还原出所有数据块
-EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来还原">
-<meta property="og:updated_time" content="2017-03-30T08:31:01.006Z">
+
+EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来">
+<meta property="og:updated_time" content="2017-03-30T08:40:26.143Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EC code">
 <meta name="twitter:description" content="基本原理纠删码（EC）是最近段时间啊存储领域比较流行的数据冗余存储方法，类似传统的RAID，但是比RADI方式更灵活
+
 他将写入的数据分成N份原始数据，通过这个N份原始数据计算出M份校验数据。把N+M份数据分别保存在不同的设备或者节点中，并通过N+M份中的任意N份数据块还原出所有数据块
-EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来还原">
+
+EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来">
 
 
 
@@ -328,8 +334,11 @@ EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数
 
       
         <h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><pre><code>纠删码（EC）是最近段时间啊存储领域比较流行的数据冗余存储方法，类似传统的RAID，但是比RADI方式更灵活
+
 他将写入的数据分成N份原始数据，通过这个N份原始数据计算出M份校验数据。把N+M份数据分别保存在不同的设备或者节点中，并通过N+M份中的任意N份数据块还原出所有数据块
+
 EC 包含了编码和解码过程：将原始的N份数据计算出M份校验数据称为编码过程；通过N+M份数据中的任意N份数据来还原出原始数据的过程为解码过程。EC 可以容忍M份数据失效，任意小于等于M份的数据失效能通过剩下的数据还原出原始数据。
+
 目前一些主流的云存储厂商都采用EC编码方式。
 </code></pre><h3 id="RS-编码"><a href="#RS-编码" class="headerlink" title="RS 编码"></a>RS 编码</h3><pre><code>ReedSolomon 编码，简称RS码。
 </code></pre>
