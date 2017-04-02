@@ -92,9 +92,10 @@ Split-brain (computing))
 
 待读 Split-Brain Consensus
 
+待读 ZooKeeper internal behavior on split brain scenario
 
-brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。
-发生场景the split-brain syndrome may">
+
+brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="brain split">
 <meta property="og:url" content="http://liyanyi.com/2017/04/02/2016-10-11-brain_split/index.html">
@@ -104,10 +105,11 @@ Split-brain (computing))
 
 待读 Split-Brain Consensus
 
+待读 ZooKeeper internal behavior on split brain scenario
 
-brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。
-发生场景the split-brain syndrome may">
-<meta property="og:updated_time" content="2017-04-02T03:01:36.909Z">
+
+brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可">
+<meta property="og:updated_time" content="2017-04-02T03:30:35.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="brain split">
 <meta name="twitter:description" content="参考原文：
@@ -115,9 +117,10 @@ Split-brain (computing))
 
 待读 Split-Brain Consensus
 
+待读 ZooKeeper internal behavior on split brain scenario
 
-brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。
-发生场景the split-brain syndrome may">
+
+brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可">
 
 
 
@@ -347,10 +350,12 @@ brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综�
 </li>
 <li><p><strong>待读</strong> <a href="http://www.scs.stanford.edu/14au-cs244b/labs/projects/rygaard.pdf" target="_blank" rel="external">Split-Brain Consensus</a></p>
 </li>
+<li><p><strong>待读</strong> <a href="http://stackoverflow.com/questions/21380664/zookeeper-internal-behavior-on-split-brain-scenario" target="_blank" rel="external">ZooKeeper internal behavior on split brain scenario</a></p>
+</li>
 </ol>
 <h1 id="brain-split"><a href="#brain-split" class="headerlink" title="brain split"></a>brain split</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。</p>
 <h2 id="发生场景"><a href="#发生场景" class="headerlink" title="发生场景"></a>发生场景</h2><p>the split-brain syndrome may occur when all of the private links go down simultaneously, but the cluster nodes are still running, each one believing they are the only one running. The data sets of each cluster may then randomly serve clients by their own “idiosyncratic” data set updates, without any coordination with the other data sets.</p>
-<h2 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h2><ul>
+<h2 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h2><h3 id="wiki-提供的方法"><a href="#wiki-提供的方法" class="headerlink" title="wiki 提供的方法"></a>wiki 提供的方法</h3><ul>
 <li>乐观方法</li>
 </ul>
 <ol>
@@ -364,6 +369,15 @@ brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综�
 </ul>
 <p>悲观的方法是以牺牲可用性来保证一致性的。当出现 split-brain 场景时，限制被隔离网络访问来保证一致性。</p>
 <p>典型的方案：”quorum-consensus”, 被隔离的网络只有获取到多数人的投票，才可以提供正常的服务；而获取不到多数人投票的子网络会被自动隔离。</p>
+<h3 id="常见的方法"><a href="#常见的方法" class="headerlink" title="常见的方法"></a>常见的方法</h3><ol>
+<li><p>Quorums</p>
+</li>
+<li><p>採用Redundant communications。冗余通信的方式，集群中採用多种通信方式，防止一种通信方式失效导致集群中的节点无法通信。</p>
+</li>
+<li><p>Fencing, 共享资源的方式，比方能看到共享资源就表示在集群中，可以获得共享资源的锁的就是Leader。看不到共享资源的，就不在集群中</p>
+</li>
+</ol>
+<h1 id="zookeeper-处理-brain-split"><a href="#zookeeper-处理-brain-split" class="headerlink" title="zookeeper 处理 brain split"></a>zookeeper 处理 brain split</h1><p>Zookeeper needs at least quorum to operate. Any partition that is smaller<br>than quorum will not be able to make any state changes.</p>
 
       
     </div>
@@ -534,7 +548,7 @@ brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考原文："><span class="nav-number">1.</span> <span class="nav-text">参考原文：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#brain-split"><span class="nav-number"></span> <span class="nav-text">brain split</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发生场景"><span class="nav-number">2.</span> <span class="nav-text">发生场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理方法"><span class="nav-number">3.</span> <span class="nav-text">处理方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考原文："><span class="nav-number">1.</span> <span class="nav-text">参考原文：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#brain-split"><span class="nav-number"></span> <span class="nav-text">brain split</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发生场景"><span class="nav-number">2.</span> <span class="nav-text">发生场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理方法"><span class="nav-number">3.</span> <span class="nav-text">处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiki-提供的方法"><span class="nav-number">3.1.</span> <span class="nav-text">wiki 提供的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的方法"><span class="nav-number">3.2.</span> <span class="nav-text">常见的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zookeeper-处理-brain-split"><span class="nav-number"></span> <span class="nav-text">zookeeper 处理 brain split</span></a></div>
             
 
           </div>
