@@ -87,49 +87,19 @@
 
 
 
-<meta name="description" content="参考原文：
-
-Split-brain (computing))
-
-待读 Split-Brain Consensus
-
-待读 ZooKeeper internal behavior on split brain scenario
-
-待读 一种集群脑裂后仲裁处理方法、仲裁存储装置以及系统
-
-
-brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务">
+<meta name="description" content="brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。
+发生场景the split-brain syndrome may occur when all of the private links go down simultaneously,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="brain split">
 <meta property="og:url" content="http://liyanyi.com/2017/04/02/2016-10-11-brain_split/index.html">
 <meta property="og:site_name" content="Li Wenlong">
-<meta property="og:description" content="参考原文：
-
-Split-brain (computing))
-
-待读 Split-Brain Consensus
-
-待读 ZooKeeper internal behavior on split brain scenario
-
-待读 一种集群脑裂后仲裁处理方法、仲裁存储装置以及系统
-
-
-brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务">
-<meta property="og:updated_time" content="2017-04-02T03:40:03.384Z">
+<meta property="og:description" content="brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。
+发生场景the split-brain syndrome may occur when all of the private links go down simultaneously,">
+<meta property="og:updated_time" content="2017-04-05T13:03:40.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="brain split">
-<meta name="twitter:description" content="参考原文：
-
-Split-brain (computing))
-
-待读 Split-Brain Consensus
-
-待读 ZooKeeper internal behavior on split brain scenario
-
-待读 一种集群脑裂后仲裁处理方法、仲裁存储装置以及系统
-
-
-brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务">
+<meta name="twitter:description" content="brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。
+发生场景the split-brain syndrome may occur when all of the private links go down simultaneously,">
 
 
 
@@ -354,18 +324,7 @@ brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综�
       
 
       
-        <p> 参考原文：</p>
-<ol>
-<li><p><a href="https://www.wikiwand.com/en/Split-brain_(computing" target="_blank" rel="external">Split-brain (computing)</a>)</p>
-</li>
-<li><p><strong>待读</strong> <a href="http://www.scs.stanford.edu/14au-cs244b/labs/projects/rygaard.pdf" target="_blank" rel="external">Split-Brain Consensus</a></p>
-</li>
-<li><p><strong>待读</strong> <a href="http://stackoverflow.com/questions/21380664/zookeeper-internal-behavior-on-split-brain-scenario" target="_blank" rel="external">ZooKeeper internal behavior on split brain scenario</a></p>
-</li>
-<li><p><strong>待读</strong> <a href="https://www.google.com/patents/WO2016107173A1?cl=zh-CN" target="_blank" rel="external">一种集群脑裂后仲裁处理方法、仲裁存储装置以及系统</a></p>
-</li>
-</ol>
-<h1 id="brain-split"><a href="#brain-split" class="headerlink" title="brain split"></a>brain split</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。</p>
+        <h1 id="brain-split"><a href="#brain-split" class="headerlink" title="brain split"></a>brain split</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>分裂是一个计算机术语,基于与医学分裂-大脑综合症的类比.它表示由于网络设计中的服务器或基于服务器不能相互通信和同步数据的故障条件而导致的数据或可用性不一致。最后一个案例通常也称为网络分区。</p>
 <h2 id="发生场景"><a href="#发生场景" class="headerlink" title="发生场景"></a>发生场景</h2><p>the split-brain syndrome may occur when all of the private links go down simultaneously, but the cluster nodes are still running, each one believing they are the only one running. The data sets of each cluster may then randomly serve clients by their own “idiosyncratic” data set updates, without any coordination with the other data sets.</p>
 <h2 id="处理方法"><a href="#处理方法" class="headerlink" title="处理方法"></a>处理方法</h2><h3 id="wiki-提供的方法"><a href="#wiki-提供的方法" class="headerlink" title="wiki 提供的方法"></a>wiki 提供的方法</h3><ul>
 <li>乐观方法</li>
@@ -389,7 +348,19 @@ brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综�
 <li><p>Fencing, 共享资源的方式，比方能看到共享资源就表示在集群中，可以获得共享资源的锁的就是Leader。看不到共享资源的，就不在集群中</p>
 </li>
 </ol>
-<h2 id="zookeeper-处理-brain-split"><a href="#zookeeper-处理-brain-split" class="headerlink" title="zookeeper 处理 brain split"></a>zookeeper 处理 brain split</h2><p>Zookeeper needs at least quorum to operate. Any partition that is smaller<br>than quorum will not be able to make any state changes.</p>
+<h2 id="zookeeper-处理-brain-split"><a href="#zookeeper-处理-brain-split" class="headerlink" title="zookeeper 处理 brain split"></a>zookeeper 处理 brain split</h2><p>避免这种情况其实也很简单，在slaver切换的时候不在检查到老的master出现问题后马上切换，而是在休眠一段足够的时间，确保老的master已经获知变更并且做了相关的shutdown清理工作了然后再注册成为master就能避免这类问题了，这个休眠时间一般定义为与zookeeper定义的超时时间就够了，但是这段时间内系统可能是不可用的，但是相对于数据不一致的后果我想还是值得的。</p>
+<h2 id="参考原文："><a href="#参考原文：" class="headerlink" title="参考原文："></a>参考原文：</h2><ol>
+<li><p><a href="https://www.wikiwand.com/en/Split-brain_(computing" target="_blank" rel="external">Split-brain (computing)</a>)</p>
+</li>
+<li><p><strong>待读</strong> <a href="http://www.scs.stanford.edu/14au-cs244b/labs/projects/rygaard.pdf" target="_blank" rel="external">Split-Brain Consensus</a></p>
+</li>
+<li><p><strong>待读</strong> <a href="http://stackoverflow.com/questions/21380664/zookeeper-internal-behavior-on-split-brain-scenario" target="_blank" rel="external">ZooKeeper internal behavior on split brain scenario</a></p>
+</li>
+<li><p><strong>待读</strong> <a href="https://www.google.com/patents/WO2016107173A1?cl=zh-CN" target="_blank" rel="external">一种集群脑裂后仲裁处理方法、仲裁存储装置以及系统</a></p>
+</li>
+<li><p><a href="http://backend.blog.163.com/blog/static/20229412620128911939110/" target="_blank" rel="external">Zookeeper和分布式环境中的假死脑裂问题</a></p>
+</li>
+</ol>
 
       
     </div>
@@ -560,7 +531,7 @@ brain split概念分裂是一个计算机术语,基于与医学分裂-大脑综�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#brain-split"><span class="nav-number">1.</span> <span class="nav-text">brain split</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发生场景"><span class="nav-number">1.2.</span> <span class="nav-text">发生场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理方法"><span class="nav-number">1.3.</span> <span class="nav-text">处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiki-提供的方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">wiki 提供的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">常见的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper-处理-brain-split"><span class="nav-number">1.4.</span> <span class="nav-text">zookeeper 处理 brain split</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#brain-split"><span class="nav-number">1.</span> <span class="nav-text">brain split</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发生场景"><span class="nav-number">1.2.</span> <span class="nav-text">发生场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理方法"><span class="nav-number">1.3.</span> <span class="nav-text">处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wiki-提供的方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">wiki 提供的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">常见的方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zookeeper-处理-brain-split"><span class="nav-number">1.4.</span> <span class="nav-text">zookeeper 处理 brain split</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考原文："><span class="nav-number">1.5.</span> <span class="nav-text">参考原文：</span></a></li></ol></li></ol></div>
             
 
           </div>
