@@ -710,8 +710,14 @@ Pool再一次进行了细分
       
         
           
-          总结针对分布式对象存储的方式
-          
+          总结针对分布式对象存储的方式数据
+对于底层存储文件唯一表示fid-chunk-object_id
+举例：文件大小为 5G
+组成
+
+obj-id
+每 32 个 stripe （分条）为一个对象 object。每个stripe 由 strip 按照 N+M 通过EC 计算得出。假如 strip 大小为 
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/04/05/2016-04-05-对象存储处理/#more" rel="contents">
