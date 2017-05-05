@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux mount," />
+  <meta name="keywords" content="linux io," />
 
 
 
@@ -87,24 +87,25 @@
 
 
 
-<meta name="description" content="linux mount##
-原文linux文件系统之mount流程分析
-真正的原文链接已经打不开了，这是以便转载的文章">
+<meta name="description" content="linux io
+application process应用程序：这没什么好说的，通过IO相关系统调用(如open/read/write)发起IO请求，属于IO请求的源头
+file system文件系统：应用程序的请求直接到达文件系统层。文件系统又分为VFS和具体文件系统（ext3、ext4等），VFS对上层提供统一的访问接口，而ext3等文件系统则是具体实现。另外，在这个层次，为了效率考虑，该层">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux mount">
-<meta property="og:url" content="http://liyanyi.com/2017/04/26/liunux_mount/index.html">
+<meta property="og:title" content="linux io path">
+<meta property="og:url" content="http://liyanyi.com/2017/05/05/linux_io/index.html">
 <meta property="og:site_name" content="Li Wenlong">
-<meta property="og:description" content="linux mount##
-原文linux文件系统之mount流程分析
-真正的原文链接已经打不开了，这是以便转载的文章">
-<meta property="og:image" content="http://onjwbz75c.bkt.clouddn.com/dentry.jpg">
-<meta property="og:updated_time" content="2017-04-26T07:03:06.375Z">
+<meta property="og:description" content="linux io
+application process应用程序：这没什么好说的，通过IO相关系统调用(如open/read/write)发起IO请求，属于IO请求的源头
+file system文件系统：应用程序的请求直接到达文件系统层。文件系统又分为VFS和具体文件系统（ext3、ext4等），VFS对上层提供统一的访问接口，而ext3等文件系统则是具体实现。另外，在这个层次，为了效率考虑，该层">
+<meta property="og:image" content="http://onjwbz75c.bkt.clouddn.com/linux_io_1.gif">
+<meta property="og:image" content="http://onjwbz75c.bkt.clouddn.com/linux_io_2.jpg">
+<meta property="og:updated_time" content="2017-05-05T10:57:17.007Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux mount">
-<meta name="twitter:description" content="linux mount##
-原文linux文件系统之mount流程分析
-真正的原文链接已经打不开了，这是以便转载的文章">
-<meta name="twitter:image" content="http://onjwbz75c.bkt.clouddn.com/dentry.jpg">
+<meta name="twitter:title" content="linux io path">
+<meta name="twitter:description" content="linux io
+application process应用程序：这没什么好说的，通过IO相关系统调用(如open/read/write)发起IO请求，属于IO请求的源头
+file system文件系统：应用程序的请求直接到达文件系统层。文件系统又分为VFS和具体文件系统（ext3、ext4等），VFS对上层提供统一的访问接口，而ext3等文件系统则是具体实现。另外，在这个层次，为了效率考虑，该层">
+<meta name="twitter:image" content="http://onjwbz75c.bkt.clouddn.com/linux_io_1.gif">
 
 
 
@@ -132,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://liyanyi.com/2017/04/26/liunux_mount/"/>
+  <link rel="canonical" href="http://liyanyi.com/2017/05/05/linux_io/"/>
 
 
 
 
 
-  <title> linux mount | Li Wenlong </title>
+  <title> linux io path | Li Wenlong </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +258,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://liyanyi.com/2017/04/26/liunux_mount/">
+    <link itemprop="mainEntityOfPage" href="http://liyanyi.com/2017/05/05/linux_io/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Li Wenlong">
@@ -278,7 +279,7 @@
             
             
               
-                linux mount
+                linux io path
               
             
           </h1>
@@ -293,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-26T13:49:07+08:00">
-                2017-04-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-05T18:53:27+08:00">
+                2017-05-05
               </time>
             
 
@@ -329,10 +330,11 @@
       
 
       
-        <h1 id="linux-mount"><a href="#linux-mount" class="headerlink" title="linux mount"></a>linux mount</h1><p>##</p>
-<h2 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h2><p><a href="http://lib.csdn.net/article/linux/33467" target="_blank" rel="external">linux文件系统之mount流程分析</a></p>
-<p>真正的原文链接已经打不开了，这是以便转载的文章</p>
-<p><img src="http://onjwbz75c.bkt.clouddn.com/dentry.jpg" alt="picture_name"></p>
+        <h1 id="linux-io"><a href="#linux-io" class="headerlink" title="linux io"></a>linux io</h1><p><img src="http://onjwbz75c.bkt.clouddn.com/linux_io_1.gif" alt="linux_io_1.gif"><br><img src="http://onjwbz75c.bkt.clouddn.com/linux_io_2.jpg" alt="linux_io_2.jpg"></p>
+<h2 id="application-process"><a href="#application-process" class="headerlink" title="application process"></a>application process</h2><p>应用程序：这没什么好说的，通过IO相关系统调用(如open/read/write)发起IO请求，属于IO请求的源头</p>
+<h2 id="file-system"><a href="#file-system" class="headerlink" title="file system"></a>file system</h2><p>文件系统：应用程序的请求直接到达文件系统层。文件系统又分为VFS和具体文件系统（ext3、ext4等），VFS对上层提供统一的访问接口，而ext3等文件系统则是具体实现。另外，在这个层次，为了效率考虑，该层次也实现了page cache等功能。同时，用户也可以选择绕过page cache，而是直接使用direct模式进行IO（如数据库）。</p>
+<h2 id="block-io-layer"><a href="#block-io-layer" class="headerlink" title="block io layer"></a>block io layer</h2><p>块设备层：文件系统将IO请求打包提交给块设备层，该层会对这些IO请求作合并、排序、调度等，然后以新的格式发往更底层。在该层次上实现了多种电梯调度算法，如cfq、deadline等。</p>
+<h2 id="scsi-layer"><a href="#scsi-layer" class="headerlink" title="scsi layer"></a>scsi layer</h2><p>SCSI层：块设备层将请求发往SCSI层，SCSI就开始真实处理这些IO请求，但是SCSI层又对其内部按照功能划分了不同层次：<br>SCSI高层：高层驱动负责管理disk，接收块设备层发出的IO请求，打包成SCSI层可识别的命令格式，继续往下发；<br>SCSI中层：中层负责通用功能，如错误处理，超时重试等<br>SCSI低层：底层负责识别物理设备，将其抽象提供给高层，同时接收高层派发的scsi命令，交给物理设备处理。</p>
 
       
     </div>
@@ -362,7 +364,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux-mount/" rel="tag"># linux mount</a>
+            <a href="/tags/linux-io/" rel="tag"># linux io</a>
           
         </div>
       
@@ -375,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/25/ext2/" rel="next" title="ext2">
-                <i class="fa fa-chevron-left"></i> ext2
+              <a href="/2017/04/26/liunux_mount/" rel="next" title="linux mount">
+                <i class="fa fa-chevron-left"></i> linux mount
               </a>
             
           </div>
@@ -384,10 +386,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/05/linux_io/" rel="prev" title="linux io path">
-                linux io path <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -507,7 +505,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-mount"><span class="nav-number">1.</span> <span class="nav-text">linux mount</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原文"><span class="nav-number">1.1.</span> <span class="nav-text">原文</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-io"><span class="nav-number">1.</span> <span class="nav-text">linux io</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#application-process"><span class="nav-number">1.1.</span> <span class="nav-text">application process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file-system"><span class="nav-number">1.2.</span> <span class="nav-text">file system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block-io-layer"><span class="nav-number">1.3.</span> <span class="nav-text">block io layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scsi-layer"><span class="nav-number">1.4.</span> <span class="nav-text">scsi layer</span></a></li></ol></li></ol></div>
             
 
           </div>
