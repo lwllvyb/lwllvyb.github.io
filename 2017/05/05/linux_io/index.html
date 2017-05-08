@@ -100,7 +100,7 @@ file system文件系统：应用程序的请求直接到达文件系统层。文
 <meta property="og:image" content="http://onjwbz75c.bkt.clouddn.com/linux_io_1.gif">
 <meta property="og:image" content="http://onjwbz75c.bkt.clouddn.com/linux_io_2.jpg">
 <meta property="og:image" content="http://onjwbz75c.bkt.clouddn.com/linux_io_3.png">
-<meta property="og:updated_time" content="2017-05-07T09:52:53.945Z">
+<meta property="og:updated_time" content="2017-05-08T14:37:58.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux io path">
 <meta name="twitter:description" content="linux io
@@ -336,8 +336,15 @@ file system文件系统：应用程序的请求直接到达文件系统层。文
 <h2 id="file-system"><a href="#file-system" class="headerlink" title="file system"></a>file system</h2><p>文件系统：应用程序的请求直接到达文件系统层。文件系统又分为VFS和具体文件系统（ext3、ext4等），VFS对上层提供统一的访问接口，而ext3等文件系统则是具体实现。另外，在这个层次，为了效率考虑，该层次也实现了page cache等功能。同时，用户也可以选择绕过page cache，而是直接使用direct模式进行IO（如数据库）。</p>
 <h2 id="block-io-layer"><a href="#block-io-layer" class="headerlink" title="block io layer"></a>block io layer</h2><p>块设备层：文件系统将IO请求打包提交给块设备层，该层会对这些IO请求作合并、排序、调度等，然后以新的格式发往更底层。在该层次上实现了多种电梯调度算法，如cfq、deadline等。</p>
 <h2 id="scsi-layer"><a href="#scsi-layer" class="headerlink" title="scsi layer"></a>scsi layer</h2><p>SCSI层：块设备层将请求发往SCSI层，SCSI就开始真实处理这些IO请求，但是SCSI层又对其内部按照功能划分了不同层次：<br>SCSI高层：高层驱动负责管理disk，接收块设备层发出的IO请求，打包成SCSI层可识别的命令格式，继续往下发；<br>SCSI中层：中层负责通用功能，如错误处理，超时重试等<br>SCSI低层：底层负责识别物理设备，将其抽象提供给高层，同时接收高层派发的scsi命令，交给物理设备处理。</p>
-<h2 id="open-io"><a href="#open-io" class="headerlink" title="open io"></a>open io</h2><h2 id="read-io"><a href="#read-io" class="headerlink" title="read io"></a>read io</h2><p>read -&gt; sys_read</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start</div><div class="line">op=&gt;operation: Your Operation</div><div class="line">cond=&gt;condition: Yes or No?</div><div class="line">e=&gt;end</div><div class="line">st-&gt;op-&gt;cond</div><div class="line">cond(yes)-&gt;e</div><div class="line">cond(no)-&gt;op</div></pre></td></tr></table></figure>
+<h2 id="open-io"><a href="#open-io" class="headerlink" title="open io"></a>open io</h2><h2 id="read-io"><a href="#read-io" class="headerlink" title="read io"></a>read io</h2><h3 id="（用户态）read"><a href="#（用户态）read" class="headerlink" title="（用户态）read"></a>（用户态）read</h3><p>—(用户态切换到内核态)—-&gt;</p>
+<h3 id="（内核态）"><a href="#（内核态）" class="headerlink" title="（内核态）"></a>（内核态）</h3><ol>
+<li>sys_read</li>
+<li>file system(ext2)<ul>
+<li>fd 到 file 指针</li>
+<li>是否在page cache</li>
+</ul>
+</li>
+</ol>
 <h2 id="write-io"><a href="#write-io" class="headerlink" title="write io"></a>write io</h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>1.<a href="http://www.d-kai.me/linux-%E7%9A%84io%E5%B1%82%E6%AC%A1/" target="_blank" rel="external">Linux 的IO层次</a></p>
 
       
@@ -509,7 +516,7 @@ file system文件系统：应用程序的请求直接到达文件系统层。文
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-io"><span class="nav-number">1.</span> <span class="nav-text">linux io</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#application-process"><span class="nav-number">1.1.</span> <span class="nav-text">application process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file-system"><span class="nav-number">1.2.</span> <span class="nav-text">file system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block-io-layer"><span class="nav-number">1.3.</span> <span class="nav-text">block io layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scsi-layer"><span class="nav-number">1.4.</span> <span class="nav-text">scsi layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#open-io"><span class="nav-number">1.5.</span> <span class="nav-text">open io</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-io"><span class="nav-number">1.6.</span> <span class="nav-text">read io</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write-io"><span class="nav-number">1.7.</span> <span class="nav-text">write io</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.8.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-io"><span class="nav-number">1.</span> <span class="nav-text">linux io</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#application-process"><span class="nav-number">1.1.</span> <span class="nav-text">application process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#file-system"><span class="nav-number">1.2.</span> <span class="nav-text">file system</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block-io-layer"><span class="nav-number">1.3.</span> <span class="nav-text">block io layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scsi-layer"><span class="nav-number">1.4.</span> <span class="nav-text">scsi layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#open-io"><span class="nav-number">1.5.</span> <span class="nav-text">open io</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-io"><span class="nav-number">1.6.</span> <span class="nav-text">read io</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（用户态）read"><span class="nav-number">1.6.1.</span> <span class="nav-text">（用户态）read</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（内核态）"><span class="nav-number">1.6.2.</span> <span class="nav-text">（内核态）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#write-io"><span class="nav-number">1.7.</span> <span class="nav-text">write io</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.8.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
             
 
           </div>
