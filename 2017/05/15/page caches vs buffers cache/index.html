@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="page cache buffers cache," />
 
 
 
@@ -87,12 +87,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Li Wenlong">
-<meta property="og:url" content="http://liyanyi.com/archives/2016/10/index.html">
+<meta name="description" content="http://blog.csdn.net/delacroix_xu/article/details/5434770buffers是指用来给块设备做的缓冲大小，他只记录文件系统的metadata以及 tracking in-flight pages.
+　　cached是用来给文件做缓冲。
+　　那就是说：buffers是用来存储，目录里面有什么内容，权限等等。而cached直接用来记忆我们打开的文件，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="page cache vs buffers cache">
+<meta property="og:url" content="http://liyanyi.com/2017/05/15/page caches vs buffers cache/index.html">
 <meta property="og:site_name" content="Li Wenlong">
+<meta property="og:description" content="http://blog.csdn.net/delacroix_xu/article/details/5434770buffers是指用来给块设备做的缓冲大小，他只记录文件系统的metadata以及 tracking in-flight pages.
+　　cached是用来给文件做缓冲。
+　　那就是说：buffers是用来存储，目录里面有什么内容，权限等等。而cached直接用来记忆我们打开的文件，">
+<meta property="og:updated_time" content="2017-05-15T12:48:17.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Li Wenlong">
+<meta name="twitter:title" content="page cache vs buffers cache">
+<meta name="twitter:description" content="http://blog.csdn.net/delacroix_xu/article/details/5434770buffers是指用来给块设备做的缓冲大小，他只记录文件系统的metadata以及 tracking in-flight pages.
+　　cached是用来给文件做缓冲。
+　　那就是说：buffers是用来存储，目录里面有什么内容，权限等等。而cached直接用来记忆我们打开的文件，">
 
 
 
@@ -120,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://liyanyi.com/archives/2016/10/"/>
+  <link rel="canonical" href="http://liyanyi.com/2017/05/15/page caches vs buffers cache/"/>
 
 
 
 
 
-  <title> 归档 | Li Wenlong </title>
+  <title> page cache vs buffers cache | Li Wenlong </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -151,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-right  page-archive  ">
+  <div class="container sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,66 +245,162 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 20 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://liyanyi.com/2017/05/15/page caches vs buffers cache/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Li Wenlong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://mtx.baibaidu.com/upload/10/13/10/54/phq3kdf3ued.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Li Wenlong">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                page cache vs buffers cache
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-15T20:48:13+08:00">
+                2017-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p><a href="http://blog.csdn.net/delacroix_xu/article/details/5434770" target="_blank" rel="external">http://blog.csdn.net/delacroix_xu/article/details/5434770</a><br>buffers是指用来给块设备做的缓冲大小，他只记录文件系统的metadata以及 tracking in-flight pages.</p>
+<p>　　cached是用来给文件做缓冲。</p>
+<p>　　那就是说：buffers是用来存储，目录里面有什么内容，权限等等。而cached直接用来记忆我们打开的文件，如果你想知道他是不是真的生效，你可以试一下，先后执行两次命令#man X ,你就可以明显的感觉到第二次的开打的速度快很多。</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/page-cache-buffers-cache/" rel="tag"># page cache buffers cache</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/05/linux_io/" rel="next" title="linux io path">
+                <i class="fa fa-chevron-left"></i> linux io path
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/10/23/2016-10-23-make_pip_package/" itemprop="url">
-              
-                <span itemprop="name">make pip package</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/15/swap/" rel="prev" title="swap">
+                swap <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-23T17:57:59+08:00"
-              content="2016-10-23" >
-          10-23
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -302,6 +408,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -489,11 +599,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
